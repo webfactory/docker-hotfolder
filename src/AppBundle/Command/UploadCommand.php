@@ -112,7 +112,7 @@ class UploadCommand extends Command
             }
 
             $waitFor = $minAge - $currAge + 1;
-            $this->log('File %s has not been without changes for %d seconds, waiting %s more seconds', $file, $minAge, $waitFor);
+            $this->log('File %s is newer than %d seconds, waiting %s more seconds', $file, $minAge, $waitFor);
             sleep($waitFor);
         } while (true);
     }
