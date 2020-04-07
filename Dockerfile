@@ -17,6 +17,9 @@ ENV FORM_FIELD_NAME=file
 ENV PATTERN='*'
 ENV PURGE_INTERVAL=3600
 
+# Restart upload command after this timeout to deal with intermittent upload problems
+ENV RESCAN_INTERVAL=300
+
 WORKDIR /app
 ENTRYPOINT ["/app/entrypoint.sh"]
 
