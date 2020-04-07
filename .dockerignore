@@ -1,0 +1,9 @@
+vendor/
+logs/*
+tmp/*
+var/*
+*~ 
+.git
+.dockerignore
+.gitignore
+Dockerfile
