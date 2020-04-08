@@ -2,10 +2,11 @@
 
 [ -z "$UPLOAD_URL" ] && echo "The UPLOAD_URL env var must be set" && exit 1
 
-sh -c 'while true; do sleep $PURGE_INTERVAL; bin/console hotfolder:purge "$ARCHIVE" ; done' &
-
+mkdir -p "$HOTFOLDER" "$ARCHIVE"
 [ -z "$HOTFOLDER_OWNER" ] || chown "$HOTFOLDER_OWNER" $HOTFOLDER
 [ -z "$HOTFOLDER_PERM" ] || chmod "$HOTFOLDER_PERM" $HOTFOLDER
+
+sh -c 'while true; do sleep $PURGE_INTERVAL; bin/console hotfolder:purge "$ARCHIVE" ; done' &
 
 while true; do
     inotifywait --quiet --timeout 10 --event create,modify --recursive $HOTFOLDER || true 
