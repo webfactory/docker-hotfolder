@@ -9,6 +9,6 @@ mkdir -p "$HOTFOLDER" "$ARCHIVE"
 sh -c 'while true; do sleep $PURGE_INTERVAL; bin/console hotfolder:purge "$ARCHIVE" ; done' &
 
 while true; do
-    inotifywait --quiet --timeout 10 --event create,modify --recursive $HOTFOLDER || true 
+    inotifywait --quiet --timeout "$RESCAN_INTERVAL" --event create,modify --recursive $HOTFOLDER || true 
     bin/console hotfolder:upload --form-field-name=$FORM_FIELD_NAME $UPLOAD_URL $HOTFOLDER "$PATTERN" $ARCHIVE
 done
