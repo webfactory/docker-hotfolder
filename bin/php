@@ -13,4 +13,4 @@ export PHP_IDE_CONFIG=serverName=$(basename $PROJECT_DIR)
 # ACHTUNG: Reine bin/php-Prozesse haben so noch nicht die Umgebung, die phlough
 # konfiguriert haben könnte. Sie müssen die ggf. selbst mittels Dotenv laden!
 # Für Symfony macht das die src/bootstrap.php.
-exec php -c $PROJECT_DIR/www/.user.ini "$@"
+PHP_INI_SCAN_DIR=:$PROJECT_DIR/www php "$@"
