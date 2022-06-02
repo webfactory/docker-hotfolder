@@ -15,14 +15,14 @@ final class PurgeCommand extends Command
 {
     protected static $defaultName = 'hotfolder:purge';
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Purge old files from the archive directory')
             ->addArgument('path', InputArgument::REQUIRED, 'Archive directory path');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->output = $output;
         $path = rtrim($input->getArgument('path'), '/').'/';
@@ -40,6 +40,8 @@ final class PurgeCommand extends Command
         }
 
         $this->log('Finished on %s', $path);
+
+        return 0;
     }
 
     private function log(string $message, ...$args): void

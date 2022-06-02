@@ -16,27 +16,19 @@ class UploadCommand extends Command
 {
     protected static $defaultName = 'hotfolder:upload';
 
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var string */
-    private $hotfolder;
+    private string $hotfolder;
 
-    /** @var string */
-    private $pattern;
+    private string $pattern;
 
-    /** @var string */
-    private $archive;
+    private string $archive;
 
-    /**
-     * @var string
-     */
-    private $formFieldName;
+    private string $formFieldName;
 
-    /** @var OutputInterface */
-    private $output;
+    private OutputInterface $output;
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('hotfolder:upload')
             ->setDescription('Submit new files using HTTP POST')
@@ -52,7 +44,7 @@ class UploadCommand extends Command
         $this->output->writeln(vsprintf(self::$defaultName.': '.$message, $args));
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->output = $output;
 
@@ -73,22 +65,19 @@ class UploadCommand extends Command
         }
 
         $this->log('Finished on %s', $this->hotfolder);
+
+        return 0;
     }
 
-    /**
-     * @param string $path
-     *
-     * @return string
-     */
     private function ensureTrailingSlash(string $path): string
     {
         return rtrim($path, \DIRECTORY_SEPARATOR).\DIRECTORY_SEPARATOR;
     }
 
     /**
-     * @return \Traversable of SplFileInfo
+     * @return \Traversable<SplFileInfo>
      */
-    private function getFilesToUpload()
+    private function getFilesToUpload(): \Traversable
     {
         $finder = new Finder();
 
@@ -99,7 +88,7 @@ class UploadCommand extends Command
             ->sortByModifiedTime();
     }
 
-    private function waitForFile(SplFileInfo $file)
+    private function waitForFile(SplFileInfo $file): void
     {
         $minAge = 30;
 
@@ -117,10 +106,7 @@ class UploadCommand extends Command
         } while (true);
     }
 
-    /**
-     * @param SplFileInfo $file
-     */
-    private function upload(SplFileInfo $file)
+    private function upload(SplFileInfo $file): void
     {
         try {
             $client = new Client(['base_uri' => $this->url]);
@@ -142,10 +128,7 @@ class UploadCommand extends Command
         }
     }
 
-    /**
-     * @param \SplFileInfo $file
-     */
-    private function moveToArchive(\SplFileInfo $file)
+    private function moveToArchive(\SplFileInfo $file): void
     {
         $target = $this->archive.$file->getFilename().'.'.uniqid();
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Ermittelt das Projekt-Basisverzeichnis, indem es dieses Skript
 # hier selbst als Bezugspunkt nimmt. -> Es ist egal, von wo aus
@@ -7,10 +7,10 @@ PROJECT_DIR=$(dirname $(dirname $(readlink -f $0)))
 
 # Leite PHPStorm Server-Name aus Projektverzeichnis ab
 # Damit kann die IDE unterschiedliche Projekte unterscheiden
-export PHP_IDE_CONFIG=serverName=$(basename $PROJECT_DIR)
+[ -z "$PHP_IDE_CONFIG" ] && export PHP_IDE_CONFIG=serverName=$(basename $PROJECT_DIR)
 
 # Nutze die gleiche PHP-Konfiguration wie in Web-Requests (via FPM)
 # ACHTUNG: Reine bin/php-Prozesse haben so noch nicht die Umgebung, die phlough
 # konfiguriert haben könnte. Sie müssen die ggf. selbst mittels Dotenv laden!
 # Für Symfony macht das die src/bootstrap.php.
-PHP_INI_SCAN_DIR=:$PROJECT_DIR/www php "$@"
+PHP_INI_SCAN_DIR=:$PROJECT_DIR/www php8.1 "$@"

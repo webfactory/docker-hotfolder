@@ -3,9 +3,9 @@
 
 # Basiert auf https://github.com/symfony/recipes/blob/1d26ca40a1b5ba8be7c67a25227c836f84ce2465/symfony/console/3.3/bin/console
 
+use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Debug\Debug;
 
 if (false === in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
     echo 'Warning: The console should be invoked via the CLI version of PHP, not the '.\PHP_SAPI.' SAPI'.\PHP_EOL;
