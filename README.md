@@ -10,9 +10,7 @@ monitor a directory exported over NFS, SMB or FTP and forward new files to some 
 
 ## Docker Build Process
 
-This repository has been configured [over at the Docker
-Hub](https://hub.docker.com/repository/docker/webfactory/hotfolder) so that
-new Docker images are built automatically whenever commits are pushed.
+Since Docker changed their terms of service, we currently do not build images automatically.
 
 ## Credits, Copyright and License
 
