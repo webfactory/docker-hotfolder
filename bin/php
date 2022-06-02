@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Ermittelt das Projekt-Basisverzeichnis, indem es dieses Skript
 # hier selbst als Bezugspunkt nimmt. -> Es ist egal, von wo aus
