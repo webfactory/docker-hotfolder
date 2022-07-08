@@ -1,7 +1,7 @@
 # Docker image to watch a folder and HTTP POST uploaded files
 
 This repository contains a very simple Symfony application to HTTP POST all files from
-a given director that have been modified at least 30 seconds ago to a given URL, and to 
+a given directory that have been modified at least 30 seconds ago to a given URL, and to 
 move them to an `archive` folder afterwards. And a second command to prune older files
 from that archive directory.
 
