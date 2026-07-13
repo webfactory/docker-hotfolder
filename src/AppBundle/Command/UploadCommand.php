@@ -4,6 +4,7 @@ namespace AppBundle\Command;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,10 +13,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+#[AsCommand(name: 'hotfolder:upload', description: 'Submit new files using HTTP POST')]
 class UploadCommand extends Command
 {
-    protected static $defaultName = 'hotfolder:upload';
-
     private string $url;
 
     private string $hotfolder;
@@ -30,9 +30,7 @@ class UploadCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('hotfolder:upload')
-            ->setDescription('Submit new files using HTTP POST')
-            ->addOption('form-field-name', null, InputOption::VALUE_REQUIRED, 'Name for the multipart form field upload', 'file')
+        $this->addOption('form-field-name', null, InputOption::VALUE_REQUIRED, 'Name for the multipart form field upload', 'file')
             ->addArgument('url', InputArgument::REQUIRED, 'Target URL')
             ->addArgument('hotfolder', InputArgument::REQUIRED, 'Hotfolder directory')
             ->addArgument('pattern', InputArgument::REQUIRED, 'Filename pattern to process')
@@ -41,7 +39,7 @@ class UploadCommand extends Command
 
     private function log(string $message, ...$args): void
     {
-        $this->output->writeln(vsprintf(self::$defaultName.': '.$message, $args));
+        $this->output->writeln(vsprintf($this->getName().': '.$message, $args));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

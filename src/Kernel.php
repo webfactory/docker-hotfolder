@@ -20,14 +20,6 @@ class Kernel extends BaseKernel
         $loader->load($this->getProjectDir().'/src/config_'.$this->getEnvironment().'.yml');
     }
 
-    /*
-     * Nur notwendig für Symfony 3.4:
-     */
-    public function getCacheDir()
-    {
-        return $this->getProjectDir().'/var/cache/'.$this->environment;
-    }
-
     /**
      * Passend zu unserem Splunk-Setup.
      */

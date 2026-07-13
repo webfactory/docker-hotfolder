@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,15 +12,14 @@ use Symfony\Component\Finder\Finder;
 /**
  * Deletes outdated archived uploads to free disc space.
  */
+#[AsCommand(name: 'hotfolder:purge', description: 'Purge old files from the archive directory')]
 final class PurgeCommand extends Command
 {
-    protected static $defaultName = 'hotfolder:purge';
+    private OutputInterface $output;
 
     protected function configure(): void
     {
-        $this
-            ->setDescription('Purge old files from the archive directory')
-            ->addArgument('path', InputArgument::REQUIRED, 'Archive directory path');
+        $this->addArgument('path', InputArgument::REQUIRED, 'Archive directory path');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -46,6 +46,6 @@ final class PurgeCommand extends Command
 
     private function log(string $message, ...$args): void
     {
-        $this->output->writeln(vsprintf(self::$defaultName.': '.$message, $args));
+        $this->output->writeln(vsprintf($this->getName().': '.$message, $args));
     }
 }
