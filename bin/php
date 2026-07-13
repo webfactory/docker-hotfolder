@@ -13,4 +13,4 @@ PROJECT_DIR=$(dirname $(dirname $(readlink -f $0)))
 # ACHTUNG: Reine bin/php-Prozesse haben so noch nicht die Umgebung, die phlough
 # konfiguriert haben könnte. Sie müssen die ggf. selbst mittels Dotenv laden!
 # Für Symfony macht das die src/bootstrap.php.
-PHP_INI_SCAN_DIR=:$PROJECT_DIR/www php8.1 "$@"
+PHP_INI_SCAN_DIR=:$PROJECT_DIR/www php8.4 "$@"

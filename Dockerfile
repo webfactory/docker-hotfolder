@@ -1,10 +1,10 @@
-FROM php:8.1-cli-alpine as install_deps
+FROM php:8.4-cli-alpine as install_deps
 RUN apk add --no-cache --update inotify-tools
 
 FROM composer:latest as composer
 WORKDIR /app
 COPY composer.json composer.lock /app/
-RUN composer install --no-interaction --no-suggest --no-progress --no-autoloader --no-dev
+RUN composer install --no-interaction --no-suggest --no-progress --no-autoloader --no-dev --ignore-platform-req=php
 COPY . /app/
 RUN composer dump-autoload
 
@@ -27,7 +27,7 @@ RUN mkdir -p $ARCHIVE
 VOLUME $HOTFOLDER
 
 COPY --from=composer /app /app
-RUN ln -s /usr/local/bin/php /usr/bin/php8.1
+RUN ln -s /usr/local/bin/php /usr/bin/php8.4
 
 # Warm the cache
 RUN bin/console

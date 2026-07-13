@@ -3,14 +3,25 @@
     "description": "Symfony console command to upload files from a folder.",
     "license": "proprietary",
     "require": {
-        "php": "8.1.*",
+        "php": "8.4.*",
         "guzzlehttp/guzzle": "^7.4",
-        "symfony/console": "^5.4",
-        "symfony/dotenv": "^5.4",
-        "symfony/finder": "^5.4",
-        "symfony/framework-bundle": "^5.4",
-        "symfony/http-kernel": "^5.4",
-        "symfony/yaml": "^5.4"
+        "symfony/cache": "^7.4",
+        "symfony/config": "^7.4",
+        "symfony/console": "^7.4",
+        "symfony/dependency-injection": "^7.4",
+        "symfony/dotenv": "^7.4",
+        "symfony/error-handler": "^7.4",
+        "symfony/event-dispatcher": "^7.4",
+        "symfony/filesystem": "^7.4",
+        "symfony/finder": "^7.4",
+        "symfony/framework-bundle": "^7.4",
+        "symfony/http-foundation": "^7.4",
+        "symfony/http-kernel": "^7.4",
+        "symfony/routing": "^7.4",
+        "symfony/string": "^7.4",
+        "symfony/var-dumper": "^7.4",
+        "symfony/var-exporter": "^7.4",
+        "symfony/yaml": "^7.4"
     },
     "autoload": {
         "psr-4": {

@@ -19,6 +19,5 @@ agency with a focus on PHP (mostly [Symfony](http://github.com/symfony/symfony))
 developer looking for new challenges, we'd like to hear from you!
 
 - <https://www.webfactory.de>
-- <https://twitter.com/webfactory>
 
-Copyright 2019 – 2022 webfactory GmbH, Bonn. Code released under [the MIT license](LICENSE).
+Copyright 2019 – 2026 webfactory GmbH, Bonn. Code released under [the MIT license](LICENSE).
