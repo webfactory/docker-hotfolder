@@ -8,9 +8,24 @@ from that archive directory.
 Started from a shell script in combination with `inotify`, this can be used to do
 monitor a directory exported over NFS, SMB or FTP and forward new files to some API endpoint.
 
-## Docker Build Process
+## Running the Published Image
 
-Since Docker changed their terms of service, we currently do not build images automatically.
+The image is built for the `amd64` and `arm64` platforms. A GitHub Actions workflow builds and
+publishes it on every merge to `master`, and once a week regardless of code changes, so the base
+PHP image should stay up-to-date automatically.
+
+The resulting image is published at https://ghcr.io/webfactory/hotfolder. To use it:
+
+```
+docker run --rm \
+    -e UPLOAD_URL=https://example.com/upload \
+    -v /path/to/hotfolder:/hotfolder \
+    ghcr.io/webfactory/hotfolder
+```
+
+Besides `:latest`, every build is also tagged with the commit it was built from
+(`:sha-<short-sha>`) and with a unique, immutable tag per build (`:sha-<short-sha>-<run-number>`)
+that can be used to pin or roll back to a specific version.
 
 ## Credits, Copyright and License
 
