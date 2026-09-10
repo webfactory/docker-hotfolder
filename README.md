@@ -11,7 +11,7 @@ monitor a directory exported over NFS, SMB or FTP and forward new files to some 
 ## Running the Published Image
 
 The image is built for the `amd64` and `arm64` platforms. A GitHub Actions workflow builds and
-publishes it on every merge to `master`, and once a week regardless of code changes, so the base
+publishes it on every merge to `main`, and once a week regardless of code changes, so the base
 PHP image should stay up-to-date automatically.
 
 The resulting image is published at https://ghcr.io/webfactory/hotfolder. To use it:
